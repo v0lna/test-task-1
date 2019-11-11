@@ -4,7 +4,7 @@ import { Header } from 'components/Header/Header';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from 'components/Home/Home';
 import { News } from 'components/News/News';
-import { Profile } from 'components/Profile/Profile';
+import ProfileContainer from 'containers/ProfileContainer';
 const App: React.FC = () => {
   return (
     <>
@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/news" component={News} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" component={ProfileContainer} />
         <Redirect to="/" />
       </Switch>
     </>
