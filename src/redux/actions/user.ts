@@ -18,18 +18,15 @@ export const errorRequest = (payload: Error): AppActions => ({
 });
 
 const getUsers = () => {
-  // console.log('lol im here');
 
   return async (dispatch: Dispatch<AppActions>, getState: () => AppStore) => {
-    // console.log('lol im here');
-    // debugger;
+
     try {
       dispatch(startRequest());
 
       const resJson = await fetch(userUrl);
       const res = await resJson.json();
 
-      console.log(res);
       dispatch(succesRequest(res));
     } catch (error) {
       dispatch(errorRequest(error));

@@ -1,9 +1,9 @@
 import React from 'react';
-import { userState } from 'redux/reducers/user';
+import { UserState } from 'redux/reducers/user';
 import { UserProfile } from 'types/User';
 
 interface Props {
-  state: userState;
+  state: UserState;
 }
 const wrapUser = (userObj: UserProfile): JSX.Element => {
   return (

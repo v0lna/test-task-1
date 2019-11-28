@@ -1,21 +1,31 @@
 import React from 'react';
+import LoginForm from './Form';
+import { Redirect } from 'react-router';
 
 interface Props {}
 
 export const Login: React.FC<Props> = () => {
-  return (
+  let authorize = localStorage.getItem("auth");
+
+  const redirectReturn = () => {
+    return <Redirect to="/profile"/>
+  }
+  const formSubmit = ({ username, password }: any) => {
+    // console.log(logData)
+    if (username === 'admin' && password === '123456') {
+      localStorage.setItem('auth', 'true');
+      redirectReturn()
+      authorize = localStorage.getItem("auth");
+    }
+  };
+  
+  return ( 
     <div>
       <h3>Login form</h3>
-      <form action="">
-        <div>
-          <label htmlFor="usrname">Your username</label>
-          <input type="text" id="usrname" />
-        </div>
-        <div>
-          <label htmlFor="password">Your password</label>
-          <input type="text" id="password" />
-        </div>
-      </form>
+      <LoginForm onSubmit={formSubmit} />
+      {authorize === "true" ? <Redirect to="/profile"/> : null}
+      {/* <Redirect to="/profile"/> */}
+
     </div>
   );
 };

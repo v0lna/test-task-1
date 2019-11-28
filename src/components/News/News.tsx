@@ -1,18 +1,28 @@
 import React from 'react';
+import { newsState } from 'redux/reducers/news';
 
-interface Props {}
-
-export const News: React.FC<Props> = () => {
+interface Props {
+  state: newsState;
+}
+export const News: React.FC<Props> = (props) => {
+  const {
+    state: { loading, news, error },
+  } = props;
   return (
     <div>
-      <h1>Title of news</h1>
-      <h2>Author: Kodak Black</h2>
-      <span>Created at 19.11.2019 23:40</span>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, libero tenetur laboriosam
-        minima optio dolore eos mollitia tempora quibusdam architecto, reprehenderit expedita enim
-        exercitationem iste ipsam cumque impedit nulla quod.
-      </p>
+      {error ? <h2>Error </h2> : loading ? <h2>Loading...</h2> : null}
+      {news.length > 0
+        ? news.map((el) => {
+            return (
+              <div key={el.id}>
+                <h1>{el.name}</h1>
+                <h2>{el.author}</h2>
+                <span>{el.createdAt}</span>
+                <p>{el.text}</p>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 export interface OneNews {
   id: string;
   createdAt: number;
-  title: string;
-  avatar: string;
+  name: string;
+  author: string;
   text: string;
 }

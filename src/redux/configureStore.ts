@@ -3,8 +3,9 @@ import { userReducer } from './reducers/user';
 import { newsReducer } from './reducers/news';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form';
 
-const reducers = combineReducers({ news: newsReducer, user: userReducer });
+const reducers = combineReducers({ news: newsReducer, user: userReducer, form: formReducer });
 
 export type AppStore = ReturnType<typeof reducers>;
 

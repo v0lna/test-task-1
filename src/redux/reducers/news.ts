@@ -2,7 +2,7 @@ import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_ERROR } from './../../types/actions';
 import { AppActions } from 'types/actions';
 import { OneNews } from 'types/OneNews';
 
-interface newsState {
+export interface newsState {
   news: OneNews[];
   loading: boolean;
   error: null | Error;
