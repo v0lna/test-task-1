@@ -9,36 +9,37 @@ import { AppActions } from 'types/actions';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router';
 
-interface LinkStateProps {
-  state: UserState;
+export interface LinkStatePropsProfile {
+  user: UserState;
 }
 interface LinkDispatchProps {
   get: () => void;
 }
-type Props = LinkStateProps & LinkDispatchProps;
+type Props = LinkStatePropsProfile & LinkDispatchProps;
 
 class ProfileContainer extends Component<Props> {
   componentDidMount() {
-    if (this.props.state.users.length === 0) {
+    if (this.props.user.users.length === 0) {
       this.props.get();
     }
   }
   render() {
-    const authorize = localStorage.getItem("auth");
-    if (authorize !== "true") {
-      return <Redirect to="/login"/>
+    const authorize = localStorage.getItem('auth');
+    console.log(authorize);
+    if (authorize !== null) {
+      return <Redirect to="/login" />;
     }
-    const { state } = this.props;
+    const { user } = this.props;
     return (
       <div>
-        <Profile state={state} />
+        <Profile user={user} />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: AppStore): LinkStateProps => ({
-  state: state.user,
+const mapStateToProps = (state: AppStore): LinkStatePropsProfile => ({
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>): LinkDispatchProps => {

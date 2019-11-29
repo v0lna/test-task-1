@@ -5,27 +5,22 @@ import { Redirect } from 'react-router';
 interface Props {}
 
 export const Login: React.FC<Props> = () => {
-  let authorize = localStorage.getItem("auth");
+  let authorize = localStorage.getItem('auth');
 
-  const redirectReturn = () => {
-    return <Redirect to="/profile"/>
-  }
   const formSubmit = ({ username, password }: any) => {
     // console.log(logData)
     if (username === 'admin' && password === '123456') {
       localStorage.setItem('auth', 'true');
-      redirectReturn()
-      authorize = localStorage.getItem("auth");
+      authorize = localStorage.getItem('auth');
     }
   };
-  
-  return ( 
+
+  return (
     <div>
       <h3>Login form</h3>
       <LoginForm onSubmit={formSubmit} />
-      {authorize === "true" ? <Redirect to="/profile"/> : null}
+      {authorize === 'true' ? <Redirect to="/profile" /> : null}
       {/* <Redirect to="/profile"/> */}
-
     </div>
   );
 };

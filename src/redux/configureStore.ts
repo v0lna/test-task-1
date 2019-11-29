@@ -4,8 +4,14 @@ import { newsReducer } from './reducers/news';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
+import { authReducer } from './reducers/auth';
 
-const reducers = combineReducers({ news: newsReducer, user: userReducer, form: formReducer });
+const reducers = combineReducers({
+  news: newsReducer,
+  user: userReducer,
+  auth: authReducer,
+  form: formReducer,
+});
 
 export type AppStore = ReturnType<typeof reducers>;
 

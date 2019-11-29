@@ -1,10 +1,8 @@
 import React from 'react';
-import { UserState } from 'redux/reducers/user';
 import { UserProfile } from 'types/User';
+import { LinkStatePropsProfile } from 'containers/ProfileContainer';
 
-interface Props {
-  state: UserState;
-}
+
 const wrapUser = (userObj: UserProfile): JSX.Element => {
   return (
     <>
@@ -17,13 +15,12 @@ const wrapUser = (userObj: UserProfile): JSX.Element => {
     </>
   );
 };
-export const Profile: React.FC<Props> = (props) => {
+export const Profile: React.FC<LinkStatePropsProfile> = (props) => {
   const {
-    state: { users, loading, error },
-  } = props;
+    user: { users, loading, error: profilEerror }  } = props;
   return (
     <div>
-      {error ? <h2>Error </h2> : loading ? <h2>Loading...</h2> : null}
+      {profilEerror ? <h2>Error </h2> : loading ? <h2>Loading...</h2> : null}
       {users.length > 0 && wrapUser(users[0])}
     </div>
   );
