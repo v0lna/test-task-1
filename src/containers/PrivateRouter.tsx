@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { AppStore } from 'redux/configureStore';
@@ -9,15 +9,16 @@ interface LinkStateProps {
 }
 
 interface PropsOuter {
-  component: ReactComponentLike,
+  component: ReactComponentLike;
   path: string;
 }
 type Props = LinkStateProps & PropsOuter;
-const PrivateRouter: React.FC<Props> = ({ component, ...rest }) => {
+
+const PrivateRouter: React.FC<Props> = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => (rest.authStatus ? <Component /> : <Redirect to="/login" />)}
+      render={(props) => (rest.authStatus ? <Component {...props} /> : <Redirect to="/login" />)}
     />
   );
 };

@@ -1,24 +1,19 @@
 import React from 'react';
 import LoginForm from './Form';
+import { PropsLogin } from 'containers/LoginContainer';
 
-interface Props {}
+export const Login: React.FC<PropsLogin> = (props) => {
+  const { authError, logIn } = props;
 
-export const Login: React.FC<Props> = () => {
-  let authorize = localStorage.getItem('auth');
-  console.log(authorize)
-  const formSubmit = ({ username, password }: any) => {
-    // console.log(logData)
-    // if (username === 'admin' && password === '123456') {
-    //   localStorage.setItem('auth', 'true');
-    //   authorize = localStorage.getItem('auth');
-    // }
+  const formSubmit = (logData: any) => {
+    logIn(logData);
   };
 
   return (
     <div>
       <h3>Login form</h3>
       <LoginForm onSubmit={formSubmit} />
-      {/* <Redirect to="/profile"/> */}
+      {authError ? <h3>{authError}</h3> : null}
     </div>
   );
 };

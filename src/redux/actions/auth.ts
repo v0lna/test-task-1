@@ -23,7 +23,7 @@ const setLogStatus = (data: LogData) => {
       const res = await resJson.json();
       res.forEach((el: UserProfile) => {
         if (authCheck(el, data)) {
-          localStorage.setItem('auth', el.id);
+          localStorage.setItem('authId', el.id);
           dispatch(logIn(el.id));
         } else {
           dispatch(errorLog('Имя пользователя или пароль введены не верно'));
@@ -35,8 +35,15 @@ const setLogStatus = (data: LogData) => {
   };
 };
 
-const logOut = (): AppActions => ({
-  type: LOG_OUT,
-});
+const logOutAction = (): AppActions =>  ({
+    type: LOG_OUT,
+  })
 
+
+const logOut = () => {
+  return (dispatch: Dispatch<AppActions>, getState: () => AppStore) => {
+    localStorage.removeItem("authId")
+    dispatch(logOutAction())
+  };
+};
 export { setLogStatus, logOut };

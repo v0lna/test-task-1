@@ -7,7 +7,6 @@ import { AppStore } from 'redux/configureStore';
 import { ThunkDispatch } from 'redux-thunk';
 import { AppActions } from 'types/actions';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router';
 
 export interface LinkStatePropsProfile {
   user: UserState;
@@ -24,11 +23,6 @@ class ProfileContainer extends Component<Props> {
     }
   }
   render() {
-    const authorize = localStorage.getItem('auth');
-    console.log(authorize);
-    if (authorize !== null) {
-      return <Redirect to="/login" />;
-    }
     const { user } = this.props;
     return (
       <div>
