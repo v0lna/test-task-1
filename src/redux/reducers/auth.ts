@@ -1,5 +1,4 @@
 import { LOG_IN, LOG_OUT, LOG_ERROR } from '../../types/actions';
-import { UserProfile } from '../../types/User';
 import { AppActions } from 'types/actions';
 
 export interface authState {

@@ -6,6 +6,7 @@ import Home from 'components/Home/Home';
 import ProfileContainer from 'containers/ProfileContainer';
 import NewsContainer from 'containers/NewsContainer';
 import { Login } from 'components/Login/Login';
+import PrivateRouter from 'containers/PrivateRouter';
 const App: React.FC = () => {
   // const authorize = localStorage.getItem("auth")
   localStorage.removeItem('auth');
@@ -20,7 +21,8 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/news" component={NewsContainer} />
-        <Route path="/profile" component={ProfileContainer} />
+        <PrivateRouter path="/profile" component={ProfileContainer} />
+        {/* <Route path="/profile" component={ProfileContainer} /> */}
         <Route path="/login" component={Login} />
         <Redirect to="/" />
       </Switch>
