@@ -5,14 +5,14 @@ import { Dispatch } from 'redux';
 
 const userUrl = 'http://5dc4200613d21600147e5f8f.mockapi.io/profile';
 
-export const startRequest = (): AppActions => ({
+const startRequest = (): AppActions => ({
   type: USER_REQUEST,
 });
-export const succesRequest = (payload: UserProfile[]): AppActions => ({
+const succesRequest = (payload: UserProfile[]): AppActions => ({
   type: USER_SUCCESS,
   payload,
 });
-export const errorRequest = (payload: Error): AppActions => ({
+const errorRequest = (payload: Error): AppActions => ({
   type: USER_ERROR,
   payload,
 });

@@ -8,13 +8,6 @@ import PrivateRouter from 'containers/PrivateRouter';
 import LoginContainer from 'containers/LoginContainer';
 import HeaderContainer from 'containers/HeaderContainer';
 const App: React.FC = () => {
-  // const authorize = localStorage.getItem("auth")
-  localStorage.removeItem('auth');
-  // if (!authorize) {
-  //   localStorage.setItem("auth", "true")
-  // }
-
-  // console.log(authorize)
   return (
     <>
       <HeaderContainer />
