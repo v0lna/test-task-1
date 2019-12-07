@@ -54,7 +54,15 @@ export const Profile: React.FC<LinkStatePropsProfile> = (props) => {
   } = props;
   return (
     <div>
-      {profilEerror ? <h2>Error </h2> : loading ? <h2>Loading...</h2> : null}
+      {profilEerror ? (
+        <Typography color="error" align="center" variant="h5">
+          Error{' '}
+        </Typography>
+      ) : loading ? (
+        <Typography color="primary" align="center" variant="h5">
+          Loading...
+        </Typography>
+      ) : null}
       {user && wrapUser(user)}
     </div>
   );
