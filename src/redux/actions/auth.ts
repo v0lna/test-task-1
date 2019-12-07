@@ -4,7 +4,7 @@ import { LOG_IN, LOG_OUT, LOG_ERROR, AppActions } from '../../types/actions';
 import { Dispatch } from 'redux';
 import { authCheck } from 'helpers/authCheck';
 
-const userUrl = 'http://5dc4200613d21600147e5f8f.mockapi.io/profile';
+const userUrl = 'https://5dc4200613d21600147e5f8f.mockapi.io/profile';
 
 const logIn = (payload: string): AppActions => ({
   type: LOG_IN,

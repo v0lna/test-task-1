@@ -3,7 +3,7 @@ import { AppStore } from '../configureStore';
 import { NEWS_REQUEST, NEWS_SUCCESS, NEWS_ERROR, AppActions } from '../../types/actions';
 import { Dispatch } from 'redux';
 
-const userUrl = 'http://5dc4200613d21600147e5f8f.mockapi.io/news';
+const userUrl = 'https://5dc4200613d21600147e5f8f.mockapi.io/news';
 
 export const startRequest = (): AppActions => ({
   type: NEWS_REQUEST,
