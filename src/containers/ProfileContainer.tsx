@@ -23,7 +23,6 @@ class ProfileContainer extends Component<Props> {
 
     if (!this.props.user.user) this.props.get();
     else {
-      console.log(`${this.props.user.user.id} and ${this.props.authId}`)
       if(this.props.user.user.id !== this.props.authId) {
         this.props.get()
       }

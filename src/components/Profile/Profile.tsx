@@ -1,21 +1,51 @@
 import React from 'react';
 import { UserProfile } from 'types/User';
 import { UserState } from 'redux/reducers/user';
+import { Container, Card, Typography, Avatar, Link } from '@material-ui/core';
 
 interface LinkStatePropsProfile {
   user: UserState;
 }
 const wrapUser = (userObj: UserProfile): JSX.Element => {
   return (
-    <>
-      <h2>{userObj.name}</h2>
-      <img style={{ width: '250px', height: '250px' }} src={userObj.avatar} alt="user avatar" />
-      <p>Age: {userObj.age}</p>
-      <p>Sex: {userObj.sex}</p>
-      <p>
-        <a href={userObj.github_url}>Github url</a>
-      </p>
-    </>
+    <Container maxWidth="sm" style={{ marginTop: '25px' }}>
+      <Card>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+          <Typography align="center" variant="h3" component="p">
+            {userObj.name}
+          </Typography>
+          <Avatar
+            style={{ width: '120px', height: '120px', objectFit: 'cover', display: 'inline-block' }}
+            src={userObj.avatar}
+            alt="user avatar"
+          />
+        </div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            margin: '10px auto',
+            width: '265px',
+          }}
+        >
+          <Typography align="center" variant="h4" component="span">
+            Age:
+          </Typography>
+          <Typography align="center" variant="h4" component="span">
+            {userObj.age}
+          </Typography>
+          <Typography align="center" variant="h4" component="span">
+            Sex:
+          </Typography>
+          <Typography align="center" variant="h4" component="span">
+            {userObj.sex}
+          </Typography>
+        </div>
+        <Typography align="center" variant="h4" component="p">
+          <Link href={userObj.github_url}>Github url</Link>
+        </Typography>
+      </Card>
+    </Container>
   );
 };
 export const Profile: React.FC<LinkStatePropsProfile> = (props) => {

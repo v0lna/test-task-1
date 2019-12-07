@@ -12,11 +12,11 @@ export const News: React.FC<Props> = (props) => {
   return (
     <>
       {error ? (
-        <Typography align="center" variant="body1">
+        <Typography color="error" align="center" variant="h5">
           Error{' '}
         </Typography>
       ) : loading ? (
-        <Typography align="center" variant="body1">
+        <Typography color="primary" align="center" variant="h5">
           Loading...
         </Typography>
       ) : null}
@@ -25,7 +25,7 @@ export const News: React.FC<Props> = (props) => {
             return (
               <Container maxWidth="md" key={el.id} style={{ marginTop: '25px' }}>
                 <Card>
-                  <Typography align="center" variant="h3" component="title">
+                  <Typography align="center" variant="h3" component="h2">
                     {el.name}{' '}
                   </Typography>
                   <Typography align="center" variant="h4" component="h4">
