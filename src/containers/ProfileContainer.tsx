@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 
 export interface LinkStatePropsProfile {
   user: UserState;
+  authId: string | null
 }
 interface LinkDispatchProps {
   get: () => void;
@@ -18,8 +19,14 @@ type Props = LinkStatePropsProfile & LinkDispatchProps;
 
 class ProfileContainer extends Component<Props> {
   componentDidMount() {
-    if (this.props.user.users.length === 0) {
-      this.props.get();
+    console.log(this.props.user);
+
+    if (!this.props.user.user) this.props.get();
+    else {
+      console.log(`${this.props.user.user.id} and ${this.props.authId}`)
+      if(this.props.user.user.id !== this.props.authId) {
+        this.props.get()
+      }
     }
   }
   render() {
@@ -34,6 +41,7 @@ class ProfileContainer extends Component<Props> {
 
 const mapStateToProps = (state: AppStore): LinkStatePropsProfile => ({
   user: state.user,
+  authId: state.auth.userId
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>): LinkDispatchProps => {

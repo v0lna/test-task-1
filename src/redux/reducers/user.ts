@@ -3,13 +3,13 @@ import { UserProfile } from './../../types/User';
 import { AppActions } from 'types/actions';
 
 export interface UserState {
-  users: UserProfile[];
+  user: UserProfile | null;
   loading: boolean;
   error: null | Error;
 }
 
 const initialState: UserState = {
-  users: [],
+  user: null,
   loading: false,
   error: null,
 };
@@ -26,7 +26,7 @@ export const userReducer = (state = initialState, action: AppActions) => {
       return {
         ...state,
         loading: false,
-        users: action.payload,
+        user: action.payload,
       };
     case USER_ERROR:
       return {

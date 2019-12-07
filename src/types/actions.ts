@@ -18,7 +18,7 @@ export interface UserRequestAction {
 }
 export interface UserSuccessAction {
   type: typeof USER_SUCCESS;
-  payload: UserProfile[];
+  payload: UserProfile | null;
 }
 export interface UserErrorAction {
   type: typeof USER_ERROR;

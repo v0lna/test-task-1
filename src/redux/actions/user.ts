@@ -8,7 +8,7 @@ const userUrl = 'http://5dc4200613d21600147e5f8f.mockapi.io/profile';
 const startRequest = (): AppActions => ({
   type: USER_REQUEST,
 });
-const succesRequest = (payload: UserProfile[]): AppActions => ({
+const succesRequest = (payload: UserProfile): AppActions => ({
   type: USER_SUCCESS,
   payload,
 });
@@ -23,10 +23,11 @@ const getUsers = () => {
 
     try {
       dispatch(startRequest());
-
-      const resJson = await fetch(userUrl);
+      const id = getState().auth.userId;
+      
+      const resJson = await fetch(`${userUrl}/${id}`);
       const res = await resJson.json();
-
+      console.log(res)
       dispatch(succesRequest(res));
     } catch (error) {
       dispatch(errorRequest(error));

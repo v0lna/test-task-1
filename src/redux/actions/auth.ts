@@ -1,6 +1,5 @@
 import { LogData } from './../../helpers/authCheck';
 import { AppStore } from '../configureStore';
-import { UserProfile } from '../../types/User';
 import { LOG_IN, LOG_OUT, LOG_ERROR, AppActions } from '../../types/actions';
 import { Dispatch } from 'redux';
 import { authCheck } from 'helpers/authCheck';
@@ -21,29 +20,34 @@ const setLogStatus = (data: LogData) => {
     try {
       const resJson = await fetch(userUrl);
       const res = await resJson.json();
-      res.forEach((el: UserProfile) => {
+
+      let authCurrentStatus = false;
+      for (let i = 0; i < res.length; i++) {
+        const el = res[i];
         if (authCheck(el, data)) {
           localStorage.setItem('authId', el.id);
           dispatch(logIn(el.id));
-        } else {
-          dispatch(errorLog('Имя пользователя или пароль введены не верно'));
+          authCurrentStatus = true;
+          break;
         }
-      });
+      }
+      if (!authCurrentStatus) {
+        dispatch(errorLog('The username or password you entered is incorrect'));
+      }
     } catch (error) {
       dispatch(errorLog(error));
     }
   };
 };
 
-const logOutAction = (): AppActions =>  ({
-    type: LOG_OUT,
-  })
-
+const logOutAction = (): AppActions => ({
+  type: LOG_OUT,
+});
 
 const logOut = () => {
   return (dispatch: Dispatch<AppActions>, getState: () => AppStore) => {
-    localStorage.removeItem("authId")
-    dispatch(logOutAction())
+    localStorage.removeItem('authId');
+    dispatch(logOutAction());
   };
 };
 export { setLogStatus, logOut };

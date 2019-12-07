@@ -6,8 +6,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { CardContent, List, ListItem, Button } from '@material-ui/core';
 
-const Form: React.FC<InjectedFormProps> = (props) => {
-  const { handleSubmit, invalid,} = props;
+interface LogProps extends InjectedFormProps {
+  authError: null | string | Error;
+}
+
+const LoginForm: React.FC<InjectedFormProps> = (props) => {
+  const { handleSubmit, invalid } = props;
   return (
     <>
       <CssBaseline />
@@ -45,5 +49,4 @@ const Form: React.FC<InjectedFormProps> = (props) => {
     </>
   );
 };
-const LoginForm = reduxForm({ form: 'login', validate })(Form);
-export default LoginForm;
+export default reduxForm({ form: 'login', validate })(LoginForm);

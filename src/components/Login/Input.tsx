@@ -1,29 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
-
-// const CssTextField = withStyles({
-//   root: {
-//     '& label.Mui-focused': {
-//       color: 'blue',
-//     },
-//     '& .MuiInput-underline:after': {
-//       borderBottomColor: 'blue',
-//     },
-//     '& .MuiOutlinedInput-root': {
-//       '& fieldset': {
-//         borderColor: 'gray',
-//       },
-//       '&:hover fieldset': {
-//         borderColor: 'blue',
-//       },
-//       '&.Mui-focused fieldset': {
-//         borderColor: 'blue',
-//       },
-//     },
-//   },
-// })(TextField);
 
 interface InputProps {
   input: any;
@@ -40,6 +16,12 @@ const CustomizedInputs: React.FC<InputProps> = ({
   meta: { touched, error },
   required,
 }) => {
+  let errorText = ' ';
+  if (touched) {
+    errorText = error ? error : ' ';
+  } else {
+    errorText = ' ';
+  }
   return (
     <>
       <TextField
@@ -48,7 +30,8 @@ const CustomizedInputs: React.FC<InputProps> = ({
         label={label}
         type={type}
         error={error && touched}
-        helperText={touched && error}
+        helperText={errorText}
+        style={{ marginTop: '-10px', width: "150px" }}
       />
     </>
   );
